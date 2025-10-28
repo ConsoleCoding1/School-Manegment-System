@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@floating-ui/dom": "^1.7.4",
+    "@preline/dropdown": "^3.2.3",
+    "@tailwindcss/cli": "^4.1.16",
+    "@tailwindplus/elements": "^1.0.18",
+    "tailwindcss": "^4.1.16"
+  }
+}

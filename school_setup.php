@@ -10,6 +10,9 @@
         $designation = $_REQUEST['school-designation'];
         $stmt = $conn->prepare("INSERT INTO school_setting (`id`, `school_name`, `address`, `phone_no`, `email`, `logo`, `designation`) VALUES (NULL, '$name', '$address', '$phone', '$email', '$logo', '$designation')");
         $result = $stmt->execute();
+        $scholName = NULL;
+        $scholaddress = NULL;
+        $scholphone = NULL;
     }
 
 ?>

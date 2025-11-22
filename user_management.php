@@ -59,7 +59,7 @@ if (isset($_REQUEST["submit"])) {
                                                                                         } else {
                                                                                             echo "blue";
                                                                                         } ?>-500 p-2 rounded w-96">
-            <?php echo "<p class='text-red-500 text-xl'> $userNameError</p>"; ?>
+            <?php if ($userNameError) { echo "<p class='text-red-500 text-xl'> $userNameError</p>"; } ?>
         </div>
         <div class="mt-4">
             <label for="user-password" class="block mb-2">User Password:</label>

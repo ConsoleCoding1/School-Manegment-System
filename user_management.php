@@ -10,27 +10,27 @@ $createdAtError = NULL;
 $createdByError = NULL;
 $errorCount = 0;
 if (isset($_REQUEST["submit"])) {
-    if (isset($_REQUEST["user-name"])) {
+    if ($_REQUEST["user-name"] == '') {
         $userNameError = "Please fill this User Name";
         $errorCount++;
     }
-    if (isset($_REQUEST["user-password"])) {
+    if ($_REQUEST["user-password"] == '') {
         $userPasswordError = "Please fill this User Password";
         $errorCount++;
     }
-    if (isset($_REQUEST["name"])) {
+    if ($_REQUEST["name"] == '') {
         $NameError = "Please fill this Name";
         $errorCount++;
     }
-    if (isset($_REQUEST["user-role"])) {
+    if ($_REQUEST["user-role"] == '') {
         $userRoleError = "Please fill this User Role";
         $errorCount++;
     }
-    if (isset($_REQUEST["user-created-at"])) {
+    if ($_REQUEST["user-created-at"] == '') {
         $createdAtError = "Please fill this Created At";
         $errorCount++;
     }
-    if (isset($_REQUEST["user-created-by"])) {
+    if ($_REQUEST["user-created-by"] == '') {
         $createdByError = "Please fill this Created By";
         $errorCount++;
     }

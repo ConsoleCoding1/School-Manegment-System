@@ -50,25 +50,31 @@ if (isset($_REQUEST["submit"])) {
 ?>
 <link rel="stylesheet" href="output.css">
 <main class="flex flex-col justify-center items-center min-h-screen bg-linear-to-br from-red-400 via-orange-400 to-red-500">
-    <form action="" method="post" class="bg-white px-10 py-15 rounded-2xl mt-5 mb-5">
+    <form action="" method="post" id="userManagementForm" class="bg-white px-10 py-15 rounded-2xl mt-5 mb-5">
         <h1 class="text-xl mb-5">Welcome To User Management System</h1>
         <div>
-            <label for="user-name" class="block mb-2">User Name:</label>
+            <label for="user_name" class="block mb-2">User Name:</label>
             <input type="text" id="user_name" name="user-name" class="border-3 border-<?php if ($userNameError) {
                                                                                             echo "red";
                                                                                         } else {
                                                                                             echo "blue";
                                                                                         } ?>-500 p-2 rounded w-96">
-            <?php if ($userNameError) { echo "<p class='text-red-500 text-xl'> $userNameError</p>"; } ?>
+            <p class='text-red-500 text-xl userName'>
+                <?php if ($userNameError) {
+                    echo $userNameError;
+                } ?>
+            </p>
         </div>
         <div class="mt-4">
             <label for="user-password" class="block mb-2">User Password:</label>
             <input type="text" id="user-password" name="user-password" class="border-3 border-<?php echo $userPasswordError ? 'red' : 'blue'; ?>-500 p-2 rounded w-full">
-            <?php
-            if ($userPasswordError) {
-                echo "<p class='text-red-500 text-xl'>$userPasswordError</p>";
-            }
-            ?>
+            <p class='text-red-500 text-xl userPassword'>
+                <?php
+                if ($userPasswordError) {
+                    echo $userPasswordError;
+                }
+                ?>
+            </p>
         </div>
         <div class="mt-4">
             <label for="name" class="block mb-2">Name:</label>
@@ -77,7 +83,9 @@ if (isset($_REQUEST["submit"])) {
                                                                             } else {
                                                                                 echo "blue";
                                                                             } ?>-500 p-2 rounded w-full">
-            <?php echo "<p class='text-red-500 text-xl'> $NameError</p>"; ?>
+            <p class='text-red-500 text-xl name'></p>
+            <?php echo " $NameError"; ?>
+            </p>
         </div>
         <div class="mt-4">
             <label for="user-role" class="block mb-2">User Role:</label>
@@ -86,7 +94,7 @@ if (isset($_REQUEST["submit"])) {
                                                                                         } else {
                                                                                             echo "blue";
                                                                                         } ?>-500 p-2 rounded w-full">
-            <?php echo "<p class='text-red-500 text-xl'> $userRoleError</p>"; ?>
+            <?php echo "<p class='text-red-500 text-xl userRole'> $userRoleError</p>"; ?>
         </div>
         <div class="mt-4">
             <label for="user-created-at" class="block mb-2">Created at:</label>
@@ -95,7 +103,9 @@ if (isset($_REQUEST["submit"])) {
                                                                                                     } else {
                                                                                                         echo "blue";
                                                                                                     } ?>-500 p-2 rounded w-full">
-            <?php echo "<p class='text-red-500 text-xl'> $createdAtError</p>"; ?>
+            <p class='text-red-500 text-xl uCreatedAt'>
+                <?php echo $createdAtError; ?>
+            </p>
         </div>
         <div class="mt-4">
             <label for="user-created-by" class="block mb-2">Created by:</label>
@@ -104,9 +114,53 @@ if (isset($_REQUEST["submit"])) {
                                                                                                     } else {
                                                                                                         echo "blue";
                                                                                                     } ?>-500 p-2 rounded w-full">
-            <?php echo "<p class='text-red-500 text-xl'> $createdByError</p>"; ?>
+            <p class='text-red-500 text-xl uCreatedBy'>
+                <?php echo $createdByError; ?>
+            </p>
         </div>
         <button name="submit" type="submit" class="mt-6 bg-blue-500 text-white py-2 px-4 rounded">Set Up Users</button>
     </form>
 </main>
+
+<script>
+    document.querySelector("#userManagementForm").addEventListener("submit", function(e) {
+        e.preventDefault(); // stop form submit
+        let errorCount = 0;
+        if (document.querySelector("#user_name").value == "") {
+            document.querySelector(".userName").textContent = "Please fill this User Name";
+            errorCount++;
+            document.querySelector("#user_name").focus();
+        }
+        if (document.querySelector("#user-password").value == "") {
+            document.querySelector(".userPassword").textContent = "Please fill this User Password";
+            document.querySelector("#user-password").focus();
+            errorCount++;
+        }
+        if (document.querySelector("#name").value == "") {
+            document.querySelector(".name").textContent = "Please fill this Name";
+            document.querySelector("#name").focus();
+            errorCount++;
+        }
+        if (document.querySelector("#user_role").value == "") {
+            document.querySelector(".userRole").textContent = "Please fill this User Role";
+            document.querySelector("#user_role").focus();
+            errorCount++;
+        }
+        if (document.querySelector("#user_created_at").value == "") {
+            document.querySelector(".uCreatedAt").textContent = "Please fill this User Created At";
+            document.querySelector("#user_created_at").focus();
+            errorCount++;
+        }
+        if (document.querySelector("#user_created_by").value == "") {
+            document.querySelector(".uCreatedBy").textContent = "Please fill this User Created By";
+            document.querySelector("#user_created_by").focus();
+            errorCount++;
+        }
+
+        if (errorCount == 0) {
+            console.log('Form Submit');
+            document.getElementById("userManagementForm").submit();
+        }
+    });
+</script>
 <?php include 'footer.php'; ?>

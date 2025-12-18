@@ -10,49 +10,57 @@ $errorSchoolEmail = NULL;
 $errorSchoolLogo = NULL;
 $errorSchoolLogoLink = NULL;
 $errorCount = 0;
-if (isset($_REQUEST['submitBtn'])) {
-    if ($_REQUEST["school_name"] == '') {
-        $errorSchoolName = "Please fill this User Name";
+if (isset($_POST['submitBtn'])) {
+    if ($_POST['school_name'] == '') {
+        $errorSchoolName = "Please fill this School Name";
         $errorCount++;
     }
-    if ($_REQUEST["school_address"] == '') {
-        $errorSchoolAddress = "Please fill this User Password";
+
+    if ($_POST['school_address'] == '') {
+        $errorSchoolAddress = "Please fill this School Address";
         $errorCount++;
     }
-    if ($_REQUEST["school_phone"]  == '') {
+
+    if ($_POST['school_phone'] == '') {
         $errorSchoolPhone = "Please fill this School Phone";
         $errorCount++;
     }
-    if ($_REQUEST["school_email"] == '') {
+
+    if ($_POST['school_email'] == '') {
         $errorSchoolEmail = "Please fill this School Email";
         $errorCount++;
     }
-    if ($_REQUEST["school_logo"] == '') {
+
+    if ($_POST['school_logo'] == '') {
         $errorSchoolLogo = "Please fill this School Logo Link";
         $errorCount++;
     }
-    if ($_REQUEST['school_designation']) {
+
+    if ($_POST['school_designation'] == '') {
         $errorSchoolDesignation = "Please fill this School Designation";
         $errorCount++;
     }
+
     if ($errorCount == 0) {
-    $name = $_REQUEST['school_name'];
-    $address = $_REQUEST['school_address'];
-    $phone = $_REQUEST['school_phone'];
-    $email = $_REQUEST['school_email'];
-    $logo = $_REQUEST['school_logo'];
-    $designation = $_REQUEST['school_designation'];
-    $query = "INSERT INTO school_setting (`id`, `school_name`, `address`, `phone_no`, `email`, `logo`, `designation`) 
-                                    VALUES (NULL, '$name', '$address', '$phone', '$email', '$logo', '$designation')";
-
-    $stmt = $conn->prepare(query: $query);
-    $stmt->execute();
+        $schoolName = $_REQUEST['school_name'];
+        $schoolAddress = $_REQUEST['school_address'];
+        $schoolPhone = $_REQUEST['school_phone'];
+        $schoolEmail = $_REQUEST['school_email'];
+        $schoolLogo = $_REQUEST['school_logo'];
+        $schoolDesignation = $_REQUEST['school_designation'];
+        $query = "INSERT INTO school_setting (`school_name`, `address`, `phone_no`, `email`, `logo`, `designation`) 
+                                    VALUES ('$schoolName', '$schoolAddress', '$schoolPhone', '$schoolEmail', '$schoolLogo', '$schoolDesignation')";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+    }
 }
-}
 
-$getData = $conn->prepare("SELECT * FROM `employee_manegment` WHERE 1");
+$getData = $conn->prepare("SELECT * FROM `school_setting`");
 $getData->execute();
 $Data = $getData->fetchAll();
+if (empty($Data)) {
+    $Data = [];
+}
 
 ?>
 <link rel="stylesheet" href="output.css">
@@ -61,44 +69,64 @@ $Data = $getData->fetchAll();
         <h1 class="my-5 text-2xl">Please Set Up Your School</h1>
         <div>
             <label for="school_name" class="block mb-2">School Name:</label>
-            <input type="text" id="school_name" name="school_name" class="border-3 border-blue-500  p-2 rounded w-96">
+            <input type="text" id="school_name" name="school_name" value="<?= !empty($Data) && isset($Data[0]['school_name']) ? $Data[0]['school_name'] : '' ?>" class="border-3 border-blue-500  p-2 rounded w-96">
             <p class='text-red-500 text-xl school_name_error'>
                 <?php echo $errorSchoolName; ?>
             </p>
         </div>
         <div class="mt-4">
             <label for="school-address" class="block mb-2">School Address:</label>
-            <input type="text" id="school-address" name="school_address" class="border-3 border-blue-500 p-2 rounded w-96">
+            <input type="text" id="school-address" name="school_address" value="<?= !empty($Data) && isset($Data[0]['address']) ? $Data[0]['address'] : '' ?>" class="border-3 border-<?php if ($errorSchoolAddress) {
+                                                                                                                echo "red";
+                                                                                                            } else {
+                                                                                                                echo "blue";
+                                                                                                            } ?>-500 p-2 rounded w-96">
             <p class='text-red-500 text-xl address'>
-                <?php echo $createdByError; ?>
+                <?php echo $errorSchoolAddress; ?>
             </p>
         </div>
         <div class="mt-4">
             <label for="school-phone" class="block mb-2">School Phone:</label>
-            <input type="number" id="school-phone" name="school_phone" class="border-3 border-blue-500 p-2 rounded w-96">
+            <input type="" id="school-phone" name="school_phone" value="<?= !empty($Data) && isset($Data[0]['phone_no']) ? $Data[0]['phone_no'] : '' ?>" class="border-3 border-<?php if ($errorSchoolPhone) {
+                                                                                                            echo "red";
+                                                                                                        } else {
+                                                                                                            echo "blue";
+                                                                                                        } ?>-500 p-2 rounded w-96">
             <p class='text-red-500 text-xl phone'>
-                <?php echo $createdByError; ?>
+                <?php echo $errorSchoolPhone; ?>
             </p>
         </div>
         <div class="mt-4">
             <label for="school-email" class="block mb-2">School Email:</label>
-            <input type="email" id="school-email" name="school_email" class="border-3 border-blue-500 p-2 rounded w-96">
+            <input type="email" id="school-email" name="school_email" value="<?= !empty($Data) && isset($Data[0]['email']) ? $Data[0]['email'] : '' ?>" class="border-3 border-<?php if ($errorSchoolEmail) {
+                                                                                                            echo "red";
+                                                                                                        } else {
+                                                                                                            echo "blue";
+                                                                                                        } ?>-500 p-2 rounded w-96">
             <p class='text-red-500 text-xl email'>
-                <?php echo $createdByError; ?>
+                <?php echo $errorSchoolEmail; ?>
             </p>
         </div>
         <div class="mt-4">
             <label for="school-logo" class="block mb-2">School Logo Link:</label>
-            <input type="text" id="school-logo" name="school_logo" class="border-3 border-blue-500 p-2 rounded w-96">
+            <input type="text" id="school-logo" name="school_logo" value="<?= !empty($Data) && isset($Data[0]['logo']) ? $Data[0]['logo'] : '' ?>" class="border-3 border-<?php if ($errorSchoolLogo) {
+                                                                                                        echo "red";
+                                                                                                    } else {
+                                                                                                        echo "blue";
+                                                                                                    } ?>-500 p-2 rounded w-96">
             <p class='text-red-500 text-xl logo'>
-                <?php echo $createdByError; ?>
+                <?php echo $errorSchoolLogo; ?>
             </p>
         </div>
         <div class="mt-4">
             <label for="school-designation" class="block mb-2">Designation:</label>
-            <input type="text" id="school-designation" name="school_designation" class="border-3 border-blue-500 p-2 rounded w-96">
+            <input type="text" id="school-designation" name="school_designation" value="<?= !empty($Data) && isset($Data[0]['designation']) ? $Data[0]['designation'] : '' ?>" class="border-3 border-<?php if ($errorSchoolDesignation) {
+                                                                                                                        echo "red";
+                                                                                                                    } else {
+                                                                                                                        echo "blue";
+                                                                                                                    } ?>-500 p-2 rounded w-96">
             <p class='text-red-500 text-xl designation'>
-                <?php echo $createdByError; ?>
+                <?php echo $errorSchoolDesignation; ?>
             </p>
         </div>
         <button name="submitBtn" type="submit" id="submitBtn" class="mt-6 bg-blue-500 text-white py-2 px-4 rounded">Set Up School</button>
@@ -106,40 +134,47 @@ $Data = $getData->fetchAll();
 </main>
 
 <script>
-    document.querySelector("form").addEventListener("submit", function(e) {
-        e.preventDefault(); // stop form submit
-        let errorCount = 0;
-        if (document.querySelector("#school_name").value == "") {
-            document.querySelector(".school_name_error").textContent = "Please fill this School Name";
-            errorCount++;
-            document.querySelector("#school_name").focus();
-        }
-        if (document.querySelector("#school-address").value == "") {
-            document.querySelector(".address").textContent = "Please fill this School Address";
-            errorCount++;
-        }
-        if (document.querySelector("#school-phone").value == "") {
-            document.querySelector(".phone").textContent = "Please fill this School Phone ";
-            errorCount++;
-        }
-        if (document.querySelector("#school-email").value == "") {
-            document.querySelector(".email").textContent = "Please fill this School Email";
-            errorCount++;
-        }
-        if (document.querySelector("#school-logo").value == "") {
-            document.querySelector(".logo").textContent = "Please fill this School Logo";
-            errorCount++;
-        }
-        if (document.querySelector("#school-designation").value == "") {
-            document.querySelector(".designation").textContent = "Please fill this School Designation";
-            errorCount++;
-        }
+document.getElementById("schoolForm").addEventListener("submit", function (e) {
 
-        if (errorCount == 0) {
-            console.log('Form Submit');
-            document.getElementById("schoolForm").submit();
-        }
-    });
+    let errorCount = 0;
+
+    document.querySelectorAll(".text-red-500").forEach(el => el.textContent = "");
+
+    if (document.getElementById("school_name").value.trim() === "") {
+        document.querySelector(".school_name_error").textContent = "Please fill this School Name";
+        errorCount++;
+    }
+
+    if (document.getElementById("school-address").value.trim() === "") {
+        document.querySelector(".address").textContent = "Please fill this School Address";
+        errorCount++;
+    }
+
+    if (document.getElementById("school-phone").value.trim() === "") {
+        document.querySelector(".phone").textContent = "Please fill this School Phone";
+        errorCount++;
+    }
+
+    if (document.getElementById("school-email").value.trim() === "") {
+        document.querySelector(".email").textContent = "Please fill this School Email";
+        errorCount++;
+    }
+
+    if (document.getElementById("school-logo").value.trim() === "") {
+        document.querySelector(".logo").textContent = "Please fill this School Logo";
+        errorCount++;
+    }
+
+    if (document.getElementById("school-designation").value.trim() === "") {
+        document.querySelector(".designation").textContent = "Please fill this School Designation";
+        errorCount++;
+    }
+
+    if (errorCount > 0) {
+        e.preventDefault(); //  only block when errors exist
+    }
+});
 </script>
+
 
 <?php include("./footer.php") ?>

@@ -118,7 +118,6 @@ if (isset($_REQUEST['submitBtn'])) {
 </main>
 <script>
     document.querySelector("#employeeForm").addEventListener("submit", function(e) {
-        e.preventDefault(); // stop form submit
         let errorCount = 0;
         if (document.querySelector("#employee_name").value == "") {
             document.querySelector(".emName").textContent = "Please fill this Employee Name";
@@ -146,9 +145,8 @@ if (isset($_REQUEST['submitBtn'])) {
             errorCount++;
         }
 
-        if (errorCount == 0) {
-            console.log('Form Submit');
-            document.getElementById("employeeForm").submit();
+        if (errorCount > 0) {
+            e.preventDefault(); //  only block when errors exist
         }
     });
 </script>

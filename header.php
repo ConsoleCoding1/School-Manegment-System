@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="output.css">
     <script src="./elements@1.js" type="module"></script>
-    <script src="./assets/vendor/lodash/lodash.min.js"></script>
-    <script src="./assets/vendor/vanilla-calendar-pro/index.js"></script>
+    <!-- <script src="./assets/vendor/lodash/lodash.min.js"></script>
+    <script src="./assets/vendor/vanilla-calendar-pro/index.js"></script> -->
     </script>
     <script>
         function toggleMenu() {

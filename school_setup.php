@@ -77,10 +77,10 @@ if (empty($Data)) {
         <div class="mt-4">
             <label for="school-address" class="block mb-2">School Address:</label>
             <input type="text" id="school-address" name="school_address" value="<?= !empty($Data) && isset($Data[0]['address']) ? $Data[0]['address'] : '' ?>" class="border-3 border-<?php if ($errorSchoolAddress) {
-                                                                                                                echo "red";
-                                                                                                            } else {
-                                                                                                                echo "blue";
-                                                                                                            } ?>-500 p-2 rounded w-96">
+                                                                                                                                                                                            echo "red";
+                                                                                                                                                                                        } else {
+                                                                                                                                                                                            echo "blue";
+                                                                                                                                                                                        } ?>-500 p-2 rounded w-96">
             <p class='text-red-500 text-xl address'>
                 <?php echo $errorSchoolAddress; ?>
             </p>
@@ -88,10 +88,10 @@ if (empty($Data)) {
         <div class="mt-4">
             <label for="school-phone" class="block mb-2">School Phone:</label>
             <input type="" id="school-phone" name="school_phone" value="<?= !empty($Data) && isset($Data[0]['phone_no']) ? $Data[0]['phone_no'] : '' ?>" class="border-3 border-<?php if ($errorSchoolPhone) {
-                                                                                                            echo "red";
-                                                                                                        } else {
-                                                                                                            echo "blue";
-                                                                                                        } ?>-500 p-2 rounded w-96">
+                                                                                                                                                                                    echo "red";
+                                                                                                                                                                                } else {
+                                                                                                                                                                                    echo "blue";
+                                                                                                                                                                                } ?>-500 p-2 rounded w-96">
             <p class='text-red-500 text-xl phone'>
                 <?php echo $errorSchoolPhone; ?>
             </p>
@@ -99,10 +99,10 @@ if (empty($Data)) {
         <div class="mt-4">
             <label for="school-email" class="block mb-2">School Email:</label>
             <input type="email" id="school-email" name="school_email" value="<?= !empty($Data) && isset($Data[0]['email']) ? $Data[0]['email'] : '' ?>" class="border-3 border-<?php if ($errorSchoolEmail) {
-                                                                                                            echo "red";
-                                                                                                        } else {
-                                                                                                            echo "blue";
-                                                                                                        } ?>-500 p-2 rounded w-96">
+                                                                                                                                                                                    echo "red";
+                                                                                                                                                                                } else {
+                                                                                                                                                                                    echo "blue";
+                                                                                                                                                                                } ?>-500 p-2 rounded w-96">
             <p class='text-red-500 text-xl email'>
                 <?php echo $errorSchoolEmail; ?>
             </p>
@@ -110,10 +110,10 @@ if (empty($Data)) {
         <div class="mt-4">
             <label for="school-logo" class="block mb-2">School Logo Link:</label>
             <input type="text" id="school-logo" name="school_logo" value="<?= !empty($Data) && isset($Data[0]['logo']) ? $Data[0]['logo'] : '' ?>" class="border-3 border-<?php if ($errorSchoolLogo) {
-                                                                                                        echo "red";
-                                                                                                    } else {
-                                                                                                        echo "blue";
-                                                                                                    } ?>-500 p-2 rounded w-96">
+                                                                                                                                                                                echo "red";
+                                                                                                                                                                            } else {
+                                                                                                                                                                                echo "blue";
+                                                                                                                                                                            } ?>-500 p-2 rounded w-96">
             <p class='text-red-500 text-xl logo'>
                 <?php echo $errorSchoolLogo; ?>
             </p>
@@ -121,10 +121,10 @@ if (empty($Data)) {
         <div class="mt-4">
             <label for="school-designation" class="block mb-2">Designation:</label>
             <input type="text" id="school-designation" name="school_designation" value="<?= !empty($Data) && isset($Data[0]['designation']) ? $Data[0]['designation'] : '' ?>" class="border-3 border-<?php if ($errorSchoolDesignation) {
-                                                                                                                        echo "red";
-                                                                                                                    } else {
-                                                                                                                        echo "blue";
-                                                                                                                    } ?>-500 p-2 rounded w-96">
+                                                                                                                                                                                                            echo "red";
+                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                            echo "blue";
+                                                                                                                                                                                                        } ?>-500 p-2 rounded w-96">
             <p class='text-red-500 text-xl designation'>
                 <?php echo $errorSchoolDesignation; ?>
             </p>
@@ -134,46 +134,92 @@ if (empty($Data)) {
 </main>
 
 <script>
-document.getElementById("schoolForm").addEventListener("submit", function (e) {
+    document.getElementById("registr_Form").addEventListener("submit", function(e) {
 
-    let errorCount = 0;
+        let errorCount = 0;
 
-    document.querySelectorAll(".text-red-500").forEach(el => el.textContent = "");
+        // Clear all previous errors
+        document.querySelectorAll(".text-red-500").forEach(el => el.textContent = "");
 
-    if (document.getElementById("school_name").value.trim() === "") {
-        document.querySelector(".school_name_error").textContent = "Please fill this School Name";
-        errorCount++;
-    }
+        // First Name
+        if (document.getElementById("f_name").value.trim() === "") {
+            document.querySelector(".fNameErr").textContent = "Please enter first name";
+            errorCount++;
+        }
+        if (document.getElementById("f_name").value.trim() === "") {
+            document.querySelector(".fNameErr").textContent = "Please enter first name";
+            errorCount++;
+        }
+        if (document.getElementById("f_name").value.trim() === "") {
+            document.querySelector(".fNameErr").textContent = "Please enter first name";
+            errorCount++;
+        }
 
-    if (document.getElementById("school-address").value.trim() === "") {
-        document.querySelector(".address").textContent = "Please fill this School Address";
-        errorCount++;
-    }
+        // Student Number
+        if (document.getElementById("student_number").value.trim() === "") {
+            document.querySelector(".studentNumberErr").textContent = "Please enter student number";
+            errorCount++;
+        }
 
-    if (document.getElementById("school-phone").value.trim() === "") {
-        document.querySelector(".phone").textContent = "Please fill this School Phone";
-        errorCount++;
-    }
+        // Student Email
+        if (document.getElementById("student_email").value.trim() === "") {
+            document.querySelector(".studentEmailErr").textContent = "Please enter student email";
+            errorCount++;
+        }
 
-    if (document.getElementById("school-email").value.trim() === "") {
-        document.querySelector(".email").textContent = "Please fill this School Email";
-        errorCount++;
-    }
+        // Date of Birth
+        if (document.getElementById("dob").value.trim() === "") {
+            document.querySelector(".dobErr").textContent = "Please select date of birth";
+            errorCount++;
+        }
 
-    if (document.getElementById("school-logo").value.trim() === "") {
-        document.querySelector(".logo").textContent = "Please fill this School Logo";
-        errorCount++;
-    }
+        // Gender
+        if (document.getElementById("gender").value.trim() === "") {
+            document.querySelector(".genderErr").textContent = "Please enter gender";
+            errorCount++;
+        }
 
-    if (document.getElementById("school-designation").value.trim() === "") {
-        document.querySelector(".designation").textContent = "Please fill this School Designation";
-        errorCount++;
-    }
+        // Grade
+        if (document.getElementById("grade").value.trim() === "") {
+            document.querySelector(".gradeErr").textContent = "Please enter grade";
+            errorCount++;
+        }
 
-    if (errorCount > 0) {
-        e.preventDefault(); //  only block when errors exist
-    }
-});
+        // Address: Street
+        if (document.getElementById("street_address").value.trim() === "") {
+            document.querySelectorAll(".pAddreesErr")[0].textContent = "Please enter street address";
+            errorCount++;
+        }
+
+        // Address: City
+        if (document.getElementById("city").value.trim() === "") {
+            document.querySelectorAll(".pAddreesErr")[1].textContent = "Please enter city";
+            errorCount++;
+        }
+
+        // Address: State
+        if (document.getElementById("state_province").value.trim() === "") {
+            document.querySelectorAll(".pAddreesErr")[2].textContent = "Please enter state / province";
+            errorCount++;
+        }
+
+        // Address: Zip
+        if (document.getElementById("zip_code").value.trim() === "") {
+            document.querySelectorAll(".pAddreesErr")[3].textContent = "Please enter zip code";
+            errorCount++;
+        }
+
+        // Address: Country
+        if (document.getElementById("country").value.trim() === "") {
+            document.querySelectorAll(".pAddreesErr")[4].textContent = "Please enter country";
+            errorCount++;
+        }
+
+        // Stop form submit if errors exist
+        if (errorCount > 0) {
+            e.preventDefault();
+        }
+    });
 </script>
 
 

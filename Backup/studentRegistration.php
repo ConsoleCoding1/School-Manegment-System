@@ -130,9 +130,9 @@
         <!-- Submit -->
         <div class="text-center">
             <button type="submit"
-            class="rounded-full bg-linear-to-r from-blue-600 cursor-pointer to-indigo-600 px-10 py-4 text-lg font-semibold text-white">
-            Submit Registration
-        </button>
+                class="rounded-full bg-linear-to-r from-blue-600 cursor-pointer to-indigo-600 px-10 py-4 text-lg font-semibold text-white">
+                Submit Registration
+            </button>
         </div>
     </form>
 </div>
@@ -141,7 +141,6 @@
 <!-- Validation Script -->
 <script>
     document.getElementById("registr_Form").addEventListener("submit", function(e) {
-        e.preventDefault();
 
         let errorCount = 0;
         document.querySelectorAll(".text-red-500").forEach(el => el.textContent = "");
@@ -156,37 +155,37 @@
             document.getElementById("m_name").classList.add("border-red-500");
             errorCount++;
         }
-        
+
         if (document.getElementById("student_number").value.trim() === "") {
             document.getElementById("student_number").classList.add("border-red-500");
             document.querySelector(".studentNumberErr").textContent = "Student number is required";
             errorCount++;
         }
-        
+
         if (document.getElementById("student_email").value.trim() === "") {
             document.getElementById("student_email").classList.add("border-red-500");
             document.querySelector(".studentEmailErr").textContent = "Student email is required";
             errorCount++;
         }
-        
+
         if (document.getElementById("dob").value.trim() === "") {
             document.getElementById("dob").classList.add("border-red-500");
             document.querySelector(".studentDOBErr").textContent = "Date of birth is required";
             errorCount++;
         }
-        
+
         if (document.getElementById("gender").value.trim() === "") {
             document.getElementById("gender").classList.add("border-red-500");
             document.querySelector(".studentGenderErr").textContent = "Gender is required";
             errorCount++;
         }
-        
+
         if (document.getElementById("grade").value.trim() === "") {
             document.getElementById("grade").classList.add("border-red-500");
             document.querySelector(".studentGradeErr").textContent = "Grade is required";
             errorCount++;
         }
-        
+
         if (document.getElementById("street_address").value.trim() === "") {
             document.getElementById("street_address").classList.add("border-red-500");
             document.querySelector(".streetErr").textContent = "Street address is required";
@@ -214,6 +213,7 @@
         }
 
         if (errorCount > 0) {
+            e.preventDefault();
         }
     });
 </script>

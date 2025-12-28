@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    <script src="./elements@1.js" type="module"></script>
+    <!-- <script src="./assets/vendor/lodash/lodash.min.js"></script>
+    <script src="./assets/vendor/vanilla-calendar-pro/index.js"></script> -->
+    </script>
+    <link rel="stylesheet" href="output.css">
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.classList.contains('max-h-0')) {
+                menu.classList.remove('max-h-0', 'opacity-0');
+                menu.classList.add('max-h-96', 'opacity-100');
+            } else {
+                menu.classList.remove('max-h-96', 'opacity-100');
+                menu.classList.add('max-h-0', 'opacity-0');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header class=" bg-linear-to-r from-yellow-400 via-orange-400 to-red-500 shadow-lg py-4">
+        <div class="flex justify-between items-center max-w-7xl mx-auto px-8">
+            <!-- Logo -->
+            <a href="home.php"
+                class="text-4xl font-bold text-white tracking-wide hover:scale-105 transition-transform duration-300">
+                <span class="drop-shadow-md">🏫 School</span>
+            </a>
+            <div class="flex">
+                <a href="studentRegistration.php"
+                    class="md:block hidden mr-5 text-xl bg-linear-to-r from-blue-300 via-blue-400 to-red-500 text-white px-4 py-2 rounded-md hover:from-yellow-200 hover:via-blue-100 hover:to-red-300 transition duration-200 cursor-pointer">Registration</a>
+
+                <!-- Dropdown menu -->
+                <el-dropdown class="md:block hidden">
+                    <button
+                        class="inline-flex w-full justify-center  gap-x-1.5 rounded-md bg-blue-500 px-3 py-2 text-xl font-semibold text-white inset-ring-1 inset-ring-white/5 hover:bg-blue-600 cursor-pointer transition duration-200">
+                        Settings
+                        <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true"
+                            class="-mr-1 size-7 text-white">
+                            <path
+                                d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                                clip-rule="evenodd" fill-rule="evenodd" />
+                        </svg>
+                    </button>
+
+                    <el-menu anchor="bottom end" popover
+                        class="w-56 origin-top-right rounded-md bg-gray-800 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                        <div class="py-1">
+                            <a href="school_setup.php"
+                                class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">School
+                                Setup</a>
+                            <a href="employee_management.php"
+                                class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">Employee
+                                Management</a>
+                            <a href="user_management.php"
+                                class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">User
+                                Management</a>
+                        </div>
+                    </el-menu>
+                </el-dropdown>
+            </div>
+
+
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMenu()" class="md:hidden text-white text-3xl focus:outline-none">☰</button>
+        </div>
+
+        <!-- Mobile Menu with Animation -->
+        <nav id="mobileMenu"
+            class="overflow-hidden transition-all duration-500 ease-in-out max-h-0 opacity-0 flex flex-col bg-linear-to-r from-yellow-400 via-orange-400 to-red-500  text-white text-lg font-medium px-8 py-2 space-y-3 md:hidden rounded-b-2xl">
+            <a href="studentRegistration.php"
+                class="mr-5 text-xl bg-linear-to-r from-blue-300 via-blue-400 to-red-500 text-white px-4 py-2 rounded-md hover:from-yellow-200 hover:via-blue-100 hover:to-red-300 transition duration-200 cursor-pointer">Registration</a>
+            <el-dropdown class="inline-block">
+                <button
+                    class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 hover:bg-blue-600 cursor-pointer transition duration-200">
+                    Settings
+                    <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true"
+                        class="-mr-1 size-5 text-gray-400">
+                        <path
+                            d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                            clip-rule="evenodd" fill-rule="evenodd" />
+                    </svg>
+                </button>
+
+                <el-menu anchor="bottom end" popover
+                    class="w-56 origin-top-right rounded-md bg-gray-800 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                    <div class="py-1">
+                        <a href="school_setup.php"
+                            class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">School
+                            Setup</a>
+                        <a href="employee_management.php"
+                            class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">Employee
+                            Management</a>
+                        <a href="user_management.php"
+                            class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">User
+                            Management</a>
+                    </div>
+                </el-menu>
+            </el-dropdown>
+        </nav>
+    </header>
+
+    <main
+        class="flex flex-col justify-center items-center min-h-screen bg-linear-to-br from-red-400 via-orange-400 to-red-500">
+        <form action="" method="post" class="bg-white px-10 py-15 rounded-2xl my-5 " id="employeeForm">
+            <h1 class="text-xl mb-5">Welcome To Employee Management System</h1>
+            <div>
+                <label for="employee_name" class="block mb-2">Employee Name:</label>
+                <input type="text" id="employee_name" name="employee-name"
+                    class="border-3 border-blue-500 p-2 rounded w-96">
+                <p class='text-red-500 text-xl emName'>
+                </p>
+            </div>
+            <div class="mt-4">
+                <label for="employee_address" class="block mb-2">Employee Address:</label>
+                <input type="text" id="employee_address" name="employee-address"
+                    class="border-3 border-blue-500 p-2 rounded w-96">
+                <p class='text-red-500 text-xl emAddress'>
+                </p>
+            </div>
+            <div class="mt-4">
+                <label for="employee_qualification" class="block mb-2">Employee Qualification:</label>
+                <input type="text" id="employee_qualification" name="employee-qualification"
+                    class="border-3 border-blue-500 p-2 rounded w-96">
+                <p class='text-red-500 text-xl emQualification'>
+                </p>
+            </div>
+            <div class="mt-4">
+                <label for="employee_designation" class="block mb-2">Employee Designation:</label>
+                <input type="text" id="employee_designation" name="employee-designation"
+                    class="border-3 border-blue-500 p-2 rounded w-96">
+                <p class='text-red-500 text-xl emDesignation'>
+
+                </p>
+            </div>
+            <div class="mt-4">
+                <label for="employee_salary" class="block mb-2">Employee Salary:</label>
+                <input type="number" id="employee_salary" name="employee-salary"
+                    class="border-3 border-blue-500 p-2 rounded w-96">
+                <p class='text-red-500 text-xl emSalary'>
+
+                </p>
+            </div>
+            <button name="submitBtn" type="submit" id="submitBtn"
+                class="mt-6 bg-blue-500 text-white py-2 px-4 rounded">Set Up Employees</button>
+        </form>
+        <div class="fixed top-4 left-1/2 -translate-x-1/2 hidden transform transition-all duration-500 ease-out -translate-y-10 opacity-0 z-50" id="successAlert">
+            <div role="alert" class="mt-1 mb-5 text-lg flex w-96 p-3 text-[#fff3b0] bg-green-500 rounded-md" id="alert">
+                <img src="tick.png" class="h-8" alt="">
+                <p id="success" class="text-[#fff3b0] text-lg"></p>
+            </div>
+        </div>
+    </main>
+    <script src="js/employee_management.js"></script>
+</body>
+
+</html>
